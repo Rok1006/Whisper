@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dissolve 2
-  m_Shader: {fileID: -6465566751694194690, guid: 93b87f54ec20948e6bb011e3c53c130d,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 93b87f54ec20948e6bb011e3c53c130d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -110,8 +109,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_ea0df985d14e4c8da77eee31cdcee43c: {r: 1.301733, g: 1.301733, b: 1.301733,
-        a: 0}
+    - Color_ea0df985d14e4c8da77eee31cdcee43c: {r: 1.301733, g: 1.301733, b: 1.301733, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
