@@ -7,11 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Light
+  m_Name: CeilingLamp
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
-  m_ShaderKeywords: _CELPRIMARYMODE_SINGLE _EMISSION _TEXTUREBLENDINGMODE_MULTIPLY
-    _UNITYSHADOWMODE_MULTIPLY
-  m_LightmapFlags: 2
+  m_ShaderKeywords: _CELPRIMARYMODE_SINGLE _TEXTUREBLENDINGMODE_MULTIPLY _UNITYSHADOWMODE_MULTIPLY
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
@@ -91,9 +90,9 @@ Material:
     - _FlatSmoothness: 0.362
     - _FlatSpecularEdgeSmoothness: 0.5
     - _FlatSpecularEnabled: 1
-    - _FlatSpecularSize: 0.205
+    - _FlatSpecularSize: 0.87
     - _FlatSpecularSmoothness: 0.5
-    - _Flatness: 1
+    - _Flatness: 0.06
     - _FlatnessExtra: 1
     - _FlatnessSecondary: 1
     - _GlossMapScale: 1
@@ -108,7 +107,7 @@ Material:
     - _GradientSize: 0.5
     - _GradientStart: 1.17
     - _GradientTop: 10
-    - _LightContribution: 0
+    - _LightContribution: 0.28
     - _LightFalloffSize: 0
     - _LightmapDirectionPitch: 0
     - _LightmapDirectionYaw: 0
@@ -161,7 +160,7 @@ Material:
     - _ColorShadows: {r: 0.37835297, g: 0.4602353, b: 0.72, a: 1}
     - _EmissionColor: {r: 2.1233249, g: 0.11411014, b: 0, a: 1}
     - _FlatRimColor: {r: 1, g: 0.8387512, b: 0.5254902, a: 1}
-    - _FlatSpecularColor: {r: 0.76448715, g: 0.7924528, b: 0.41491634, a: 1}
+    - _FlatSpecularColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnityShadowColor: {r: 0.65, g: 0.65, b: 0.65, a: 1}
