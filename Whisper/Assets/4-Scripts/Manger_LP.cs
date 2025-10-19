@@ -17,6 +17,7 @@ public class Manger_LP : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)){
+            Debug.Log("yes");
             if(index==1){
                 Cam1.SetActive(false);
                 Cam2.SetActive(true);
