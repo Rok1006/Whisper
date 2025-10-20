@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -15,21 +17,37 @@ public class PlayerManager : MonoBehaviour
     int switchindex = 0;
     public bool usingDetect = false;
     public bool usingMap = true;
+
+    public int getCoreValue;  //current passenger 
+    [SerializeField] private float playerStartValue; //always the middle
+    [HideInInspector] public bool canTune;
+    public float scrollSpeed = 1f; // How much each scroll step adds/subtracts
+    public TextMeshProUGUI tuneValue;
+
     void Start()
     {
         radioAnim = Radio.GetComponent<Animator>();
         meterAnim = Meter.GetComponent<Animator>();
         TunningFeature.SetActive(false);
+        TuneUI.SetActive(false);
+        MinimapUI.SetActive(false);
+        playerStartValue = 50;
     }
 
     void Update()
     {
         OnOffRadio();
         SwitchingFuntion();
+        if(canTune && usingDetect){
+            TunningDevice();
+        }else{
+            tuneValue.text = "out of reach";
+        }
     }
         void OnOffRadio(){
             if(Input.GetKeyDown(KeyCode.E)){
                 if(index==0){
+                    MinimapUI.SetActive(true); //default
                     radioAnim.SetBool("OFF", false);
                     radioAnim.SetBool("ON", true);
                     index=1;
@@ -61,6 +79,7 @@ public class PlayerManager : MonoBehaviour
                     switchindex = 0;
                     usingDetect = false;
                     usingMap = true;
+                    playerStartValue = 50; //reset value
                 }
             }
         }
@@ -70,8 +89,15 @@ public class PlayerManager : MonoBehaviour
             usingMap = true;
             switchindex = 0;
         }
-        void OpenMap(){
-            //Minimap.SetActive(true);
+        void TunningDevice(){
+           float scroll = Input.GetAxis("Mouse ScrollWheel");
+           if (scroll != 0)
+            {
+                // Increase/decrease value
+                playerStartValue += scroll * scrollSpeed;
+                Debug.Log("Current value: " + playerStartValue);
+            }
+            tuneValue.text = "Frequency:\n " + playerStartValue.ToString("F1") + " Hz";
         }
 
     
