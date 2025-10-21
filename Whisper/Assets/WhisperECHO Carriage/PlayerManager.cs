@@ -19,10 +19,21 @@ public class PlayerManager : MonoBehaviour
     public bool usingMap = true;
 
     public int getCoreValue;  //current passenger 
-    [SerializeField] private float playerStartValue; //always the middle
+    public float playerStartValue; //always the middle
     [HideInInspector] public bool canTune;
+    public AudioSource passengerAudio;
+
+
     public float scrollSpeed = 1f; // How much each scroll step adds/subtracts
     public TextMeshProUGUI tuneValue;
+    public float minAngle = -135f;  // angle when value == minValue
+    public float maxAngle = 135f;   // angle when value == maxValue
+    private float minValue = 0f;
+    private float maxValue = 100f;
+    public bool invertRotation = false;
+    public Vector2 knobR;
+    [SerializeField] private Transform tunePointer;
+    [SerializeField] private Transform knob;
 
     void Start()
     {
@@ -79,15 +90,21 @@ public class PlayerManager : MonoBehaviour
                     switchindex = 0;
                     usingDetect = false;
                     usingMap = true;
-                    playerStartValue = 50; //reset value
                 }
             }
         }
 
         void Reset(){
+            TunningFeature.SetActive(false);
+            MinimapUI.SetActive(true);
+            TuneUI.SetActive(false);
             usingDetect = false;
             usingMap = true;
             switchindex = 0;
+            playerStartValue = 50; //reset value
+            tunePointer.localEulerAngles = new Vector3(0f, 0f, 0f);
+            knob.localEulerAngles = new Vector3(knobR.x, knobR.y, 0f);
+
         }
         void TunningDevice(){
            float scroll = Input.GetAxis("Mouse ScrollWheel");
@@ -95,7 +112,23 @@ public class PlayerManager : MonoBehaviour
             {
                 // Increase/decrease value
                 playerStartValue += scroll * scrollSpeed;
-                Debug.Log("Current value: " + playerStartValue);
+                playerStartValue = Mathf.Clamp(playerStartValue, minValue, maxValue);
+
+                // Rotate the knob on Z axis
+                // float rotation = (playerStartValue / maxValue) * 270f; // e.g., rotate 270 degrees max
+                // tunePointer.localEulerAngles = new Vector3(0f, 0f, -rotation);
+                // Debug.Log("Current value: " + playerStartValue);
+                if (tunePointer != null)
+                    {
+                        // Map value -> angle
+                        float t = Mathf.InverseLerp(minValue, maxValue, playerStartValue);        // 0..1
+                        float angle = Mathf.Lerp(minAngle, maxAngle, t);               // degrees
+                        if (invertRotation) angle = -angle;
+
+                        tunePointer.localEulerAngles = new Vector3(0f, 0f, angle);
+                        knob.localEulerAngles = new Vector3(knobR.x, knobR.y, angle);
+                    }
+
             }
             tuneValue.text = "Frequency:\n " + playerStartValue.ToString("F1") + " Hz";
         }

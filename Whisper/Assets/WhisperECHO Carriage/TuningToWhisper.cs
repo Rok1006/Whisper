@@ -23,11 +23,16 @@ public class TuningToWhisper : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerManager.canTune = true;
+            this.GetComponent<AudioSource>().Play();
+            playerManager.passengerAudio = this.GetComponent<AudioSource>();
         }
     }
     void OnTriggerExit(Collider other) {
         if (other.CompareTag("Player"))
         {
+            this.GetComponent<AudioSource>().Stop();
+            coreValue = Random.Range(0,100);
+            playerManager.getCoreValue = coreValue;
             playerManager.canTune = false;
         }
     }
